@@ -9,13 +9,14 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         btn_send.setOnClickListener {
+
             showExist()
         }
     }
@@ -51,4 +52,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "没有搜索到任何设备", Toast.LENGTH_SHORT).show()
         }
     }
+
 }
