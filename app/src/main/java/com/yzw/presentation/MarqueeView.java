@@ -40,7 +40,7 @@ public class MarqueeView extends SurfaceView implements SurfaceHolder.Callback {
 
     private MarqueeViewThread mThread;
 
-    private String margueeString;
+    private String margueeString = "";
 
     private int textWidth = 0, textHeight = 0;
 
@@ -85,13 +85,16 @@ public class MarqueeView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().setFormat(PixelFormat.TRANSLUCENT);//使窗口支持透明度
     }
 
-
     //刷新文字时从头滚动
     public void setText(String msg) {
-        if (!TextUtils.isEmpty(msg)) {
-            measurementsText(msg);
+        if (margueeString.isEmpty()) {
+            if (!TextUtils.isEmpty(msg)) {
+                measurementsText(msg);
+            } else {
+                measurementsText("");
+            }
         } else {
-            measurementsText("");
+            setScrollText(msg);
         }
     }
 
@@ -101,12 +104,6 @@ public class MarqueeView extends SurfaceView implements SurfaceHolder.Callback {
         textWidth = (int) mTextPaint.measureText(margueeString);
         Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
         textHeight = (int) fontMetrics.bottom;
-//        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-//        int width = wm.getDefaultDisplay().getWidth();
-//        if (mStartPoint == 0)
-//            currentX = 0;
-//        else
-//            currentX = width - getPaddingLeft() - getPaddingRight();
     }
 
     protected void measurementsText(String msg) {

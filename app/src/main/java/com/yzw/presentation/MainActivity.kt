@@ -15,8 +15,11 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_send.setOnClickListener {
+        mMarqueeView.setText("yzw")
+        mMarqueeView.startScroll()
 
+        btn_send.setOnClickListener {
+            mMarqueeView.setText("yzwyzwyzwyzwyzwyzw")
             showExist()
         }
     }
